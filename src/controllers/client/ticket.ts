@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import * as service from "@/services/client/ticket";
+import TicketData from "@/interfaces/ticket";
 
 export async function getTicketByUser(req: Request, res: Response) {
   const userId = req.user.id;
@@ -9,7 +10,7 @@ export async function getTicketByUser(req: Request, res: Response) {
 }
 
 export async function updateTicket(req: Request, res: Response) {
-  const ticket = req.body;
+  const ticket: TicketData = req.body;
   const tickedPaid = await service.updateTicket(ticket);
   res.send(tickedPaid);
 }

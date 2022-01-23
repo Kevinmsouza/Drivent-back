@@ -3,6 +3,7 @@ import TypeTicket from "./TypeTicket";
 import User from "./User";
 import Room from "./Room";
 import NotFoundError from "@/errors/NotFoundError";
+import TicketData from "@/interfaces/ticket";
 
 @Entity("tickets")
 export default class Ticket extends BaseEntity {
@@ -27,8 +28,13 @@ export default class Ticket extends BaseEntity {
   @JoinColumn()
   room: Room;
 
-  static async updateTicketPayment(ticket: Ticket) {
-    if(!ticket.isPaid) throw new NotFoundError;
+  static async getByUserId(userId: number) {
+    return await this.findOne({ where: { id: userId } });
+  }
+
+  static async updateTicketPayment(ticket: TicketData) {
+    if(ticket.isPaid === undefined) throw new NotFoundError;
+    
     ticket.isPaid = true;
     const ticketPaid = this.create(ticket);
     await ticketPaid.save();
