@@ -29,7 +29,7 @@ export default class Ticket extends BaseEntity {
   room: Room;
 
   static async getByUserId(userId: number) {
-    return await this.findOne({ where: { id: userId } });
+    return await this.findOne({ where: { user: userId } });
   }
 
   static async updateTicketPayment(ticket: TicketData) {
