@@ -2,6 +2,7 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne
 import TypeTicket from "./TypeTicket";
 import User from "./User";
 import Room from "./Room";
+import NotFoundError from "@/errors/NotFoundError";
 
 @Entity("tickets")
 export default class Ticket extends BaseEntity {
@@ -27,6 +28,7 @@ export default class Ticket extends BaseEntity {
   room: Room;
 
   static async updateTicketPayment(ticket: Ticket) {
+    if(!ticket.isPaid) throw new NotFoundError;
     ticket.isPaid = true;
     const ticketPaid = this.create(ticket);
     await ticketPaid.save();

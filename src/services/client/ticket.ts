@@ -6,8 +6,7 @@ export async function getTicketByUser(userId: number) {
   return ticket;
 }
 
-export async function updateTicket(userId: number) {
-  const ticket = await getTicketByUser(userId);
+export async function updateTicket(ticket: Ticket) {
   const tickedPaid = await Ticket.updateTicketPayment(ticket);
 
   return tickedPaid;

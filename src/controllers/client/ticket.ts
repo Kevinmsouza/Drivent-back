@@ -9,7 +9,7 @@ export async function getTicketByUser(req: Request, res: Response) {
 }
 
 export async function updateTicket(req: Request, res: Response) {
-  const userId = req.user.id;
-  const tickedPaid = await service.updateTicket(userId);
+  const ticket = req.body;
+  const tickedPaid = await service.updateTicket(ticket);
   res.send(tickedPaid);
 }
