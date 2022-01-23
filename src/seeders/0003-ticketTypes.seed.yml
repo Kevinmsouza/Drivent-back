@@ -1,12 +1,12 @@
 seeds:
     - TypeTicket:
         id: 1
-        type: "Presencial com hotel"
+        type: "Presencial Com Hotel"
         price: 250
         hotelPrice: 350
     - TypeTicket:
         id: 2
-        type: "Presencial sem hotel"
+        type: "Presencial Sem Hotel"
         price: 250
         hotelPrice: 0
     - TypeTicket:
